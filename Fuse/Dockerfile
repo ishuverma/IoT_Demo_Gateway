@@ -21,7 +21,7 @@ ADD Docker_Files/scripts/install.sh $HOME/tmp/
 ADD Docker_Files/scripts/run.sh $HOME/
 
 # let the user 'psteiner' own the files
-RUN chown -R psteiner:psteiner $HOME
+RUN chown -R psteiner $HOME
 
 # continue as 'psteiner'
 USER psteiner

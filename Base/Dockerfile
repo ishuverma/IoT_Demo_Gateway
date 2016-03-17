@@ -37,7 +37,7 @@ ADD config/settings.xml $HOME/.m2/
 # as ADD always uses root as user, we have to give
 # the file back to 'psteiner'
 USER root
-RUN chown -R psteiner:psteiner $HOME/.m2/*
+RUN chown -R psteiner $HOME/.m2/*
 USER psteiner
 
 # lets create a volume to mount the external maven repo
