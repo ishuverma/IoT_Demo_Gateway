@@ -65,7 +65,9 @@ pi@gateway:~ $ git clone https://github.com/PatrickSteiner/IoT_Demo_Gateway.git
 ```
 for Raspberry Pi.
 
+=== Providing Red Hat JBoss Products
 After cloning the repo, you will have to download and put https://access.redhat.com/jbossnetwork/restricted/softwareDownload.html?softwareId=41311[JBoss Fuse on Karaf] into the directory `./IoT_Demo_SmartGateway/Fuse/Docker_Files/software/`
+
 
 === Building the Gateway
 After cloneing, you only need to enter the newly created directory and run the `build.sh` script.
