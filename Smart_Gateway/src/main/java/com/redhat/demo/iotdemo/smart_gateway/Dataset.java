@@ -7,8 +7,7 @@ import org.apache.camel.dataformat.bindy.annotation.CsvRecord;
 import org.apache.camel.dataformat.bindy.annotation.DataField;
 
 @XmlRootElement(name = "dataSet")
-@XmlType(propOrder = { "deviceType", "deviceID", "payload", "count", "timestamp" })
-// temperature, 4711, 70,1,14.0
+@XmlType(propOrder = { "timestamp", "deviceType", "deviceID","count", "payload","required","average" })
 @CsvRecord(separator = ",")
 public class Dataset {
 	@DataField(pos = 1, required = true) 
@@ -26,6 +25,12 @@ public class Dataset {
 	@DataField(pos = 5, required = true) 
 	private String	timestamp;
 	
+	@DataField(pos = 6, required = false)
+	private int		required;
+	
+	@DataField(pos = 7, required = false)
+	private float	average;
+	
 	public Dataset()
 	{
 		this.timestamp 	= "";
@@ -33,15 +38,19 @@ public class Dataset {
 		this.deviceID	= "";
 		this.count		= "";
 		this.payload	= "";
+		this.required	= 0;
+		this.average	= 0;
 	}
 	
-	public Dataset(String time, String devType, String devID, String count, String pay )
+	public Dataset(String time, String devType, String devID, String count, String pay, int req, float av )
 	{
 		this.timestamp 	= time;
 		this.deviceType = devType;
 		this.deviceID	= devID;
 		this.count		= count;
 		this.payload	= pay;
+		this.required	= req;
+		this.average	= av;
 	}
 
 
@@ -108,5 +117,34 @@ public class Dataset {
 	public void setCount(String count) {
 		this.count = count;
 	}
+
+	/**
+	 * @return the required
+	 */
+	public int getRequired() {
+		return required;
+	}
+
+	/**
+	 * @param required the required to set
+	 */
+	public void setRequired(int required) {
+		this.required = required;
+	}
+
+	/**
+	 * @return the average
+	 */
+	public float getAverage() {
+		return average;
+	}
+
+	/**
+	 * @param average the average to set
+	 */
+	public void setAverage(float average) {
+		this.average = average;
+	}
+	
 	
 }

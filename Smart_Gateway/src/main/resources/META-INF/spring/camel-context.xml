@@ -44,7 +44,7 @@
   </dataFormats>
   
   <!-- Route from local MQTT-Broker to remote JMS Broker in Datacenter -->
-  <route>
+  <route id="messagesFromSensor">
     <from uri="mqtt:mqtt.temp.receiver?host=tcp://localhost:1883&amp;subscribeTopicNames=iotdemo/#/#&amp;userName=admin&amp;password=change12_me"/>
     <bean ref="myHelper" method="enhanceMessage" beanType="com.redhat.demo.smart_gateway.MyHelper"/>
     <unmarshal ref="bindyDataFormat"/>
@@ -52,7 +52,7 @@
     <to uri="activemqDatacener:queue:message.to.rules_cep"/>
   </route>
   
-  <route>
+  <route id="messagesFromDatacenter">
     <from uri="activemqLocal:queue:message.from.datacenter"/>
     <log message="Received message from Datacenter = ${body}"/>
     <to uri="mqtt:mqtt.temp.recevier?host=tcp://localhost:1883&amp;publishTopicName=iotdemocommand/light&amp;userName=admin&amp;password=change12_me"/>

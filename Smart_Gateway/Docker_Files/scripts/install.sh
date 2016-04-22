@@ -26,6 +26,3 @@ echo "commons-dbcp"
 $HOME/$FUSE_LOCATION/bin/client -h 127.0.0.1 "osgi:install -s wrap:mvn:commons-dbcp/commons-dbcp/1.4"
 echo "camel-mqtt"
 $HOME/$FUSE_LOCATION/bin/client -h 127.0.0.1 "features:install camel-mqtt"
-# echo "Our code"
-# $HOME/$FUSE_LOCATION/bin/client -h 127.0.0.1 "osgi:install -s file://$HOME/tmp/$BUNDLE_NAME"
-
