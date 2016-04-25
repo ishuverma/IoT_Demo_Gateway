@@ -30,6 +30,7 @@ public class App
     	AMQTester tester = new AMQTester(); 
     	
     	tester.waitForBroker(sourceAMQBroker);
+    	tester.waitForBroker(targetAMQBroker);
     	
 		Consumer consumer = new Consumer(sourceQueue, sourceAMQBroker, brokerUID, brokerPassword);
 		Producer producer = new Producer(targetQueue, targetAMQBroker, brokerUID, brokerPassword);
