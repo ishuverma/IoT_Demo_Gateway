@@ -87,9 +87,9 @@ ports
 
 1. In section `smartgateway`:
 
-  ** `INBOUND_JMS_BROKER_URL` is the fully qualified URL for the ActiveMQ Broker running on the Gateway this will usually be `tcp://localhost:61616`
+  ** `DATACENTER_JMS_BROKER_URL` is the fully qualified URL for the ActiveMQ Broker running on the Gateway this will usually be `tcp://localhost:61616`
 
-  ** `OUTBOUND_JMS_BROKER_URL` is the fully qualified URL for the ActiveMQ Broker where the Complex Event Processing ( CEP ) will expect messages to arrive. In this setup this will also be `tcp://localhost:61616`
+  ** `GATEWAY_JMS_BROKER_URL` is the fully qualified URL for the ActiveMQ Broker where the Complex Event Processing ( CEP ) will expect messages to arrive. In this setup this will also be `tcp://localhost:61616`
 
   ** `DATACENTER_JMS_BROKER_URL` is the fully qualified URL for the ActiveMQ Broker running the Datacenter part of the demo setup.
 
