@@ -20,7 +20,7 @@ smartgateway:
                 - JAVA_MAX_PERM_MEM=128M
         privileged: true
         volumes:
-                - ./Smart_Gateway/target:/home/psteiner/target
+                - ./Smart_Gateway/target:/home/psteiner/fuse/deploy
                 - ~/.m2/repository:/home/psteiner/.m2/repository
 
 rulescep:
