@@ -1,6 +1,6 @@
 FROM    psteiner/base
 
-MAINTAINER psteiner <psteiner@redhat.com>
+MAINTAINER psteiner <psteiner@redhat.com>, ishuverma <iverma@redhat.com>
 
 ENV FUSE_INSTALL_IMAGE jboss-fuse-full-6.2.1.redhat-084.zip
 ENV FUSE_INSTALL_DIR jboss-fuse-6.2.1.redhat-084
@@ -20,11 +20,11 @@ ADD Docker_Files/config/activemq.xml $HOME/tmp/
 ADD Docker_Files/scripts/install.sh $HOME/tmp/
 ADD Docker_Files/scripts/run.sh $HOME/
 
-# let the user 'psteiner' own the files
-RUN chown -R psteiner $HOME
+# let the user 'demo-user' own the files
+RUN chown -R demo-user $HOME
 
-# continue as 'psteiner'
-USER psteiner
+# continue as 'demo-user'
+USER demo-user
 
 RUN chmod +x $HOME/tmp/install.sh && \
     chmod +x $HOME/run.sh && \
@@ -55,6 +55,6 @@ EXPOSE 22 8101 8181 44444 1099 61616 80 8080
 # ENTRYPOINT $HOME/$FUSE_LOCATION/bin/fuse
 CMD $HOME/run.sh
 
-# Build command -> docker build --rm -t psteiner/fuse .
-# run command -> docker run -d -p 10000:8181 psteiner/fuse
-# run and connect -> docker run -p 10000:8181 -i -t psteiner/fuse /bin/bash
+# Build command -> docker build --rm -t demo-user/fuse .
+# run command -> docker run -d -p 10000:8181 demo-user/fuse
+# run and connect -> docker run -p 10000:8181 -i -t demo-user/fuse /bin/bash
