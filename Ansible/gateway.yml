@@ -30,9 +30,11 @@
 #        user: name=demo-user groups=docker append=yes
 
       - name: Clone Gateway code from github
-        git: repo=https://github.com/ishuverma/IoT_Demo_Gateway/tree/Minnowboard
+        git: repo=https://github.com/ishuverma/IoT_Demo_Gateway.git
              dest=/home/demo-user/IoT_Demo_Gateway
-             version=OSGi
+             version=Minnowboard
+        tags:
+         - github
              
 #      - name: Download Maven
 #        get_url: url=http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip dest=/home/demo-user/ force=no
