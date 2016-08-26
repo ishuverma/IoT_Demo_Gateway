@@ -12,9 +12,9 @@
       - name: Enable Repo (2/2)
         shell: subscription-manager repos --enable=rhel-7-server-optional-rpms
 
-#      - name: Install various pre-requisites
-#       yum: name=java-1.7.0-openjdk-devel,wget,unzip,git
-#            state=present
+      - name: Install various pre-requisites
+        yum: name=java-1.7.0-openjdk-devel,wget,unzip,git
+            state=present
 
       - name: Install docker
         yum: name=docker,docker-registry,device-mapper-libs,device-mapper-event-libs
@@ -62,9 +62,11 @@
 #        shell: source /etc/profile.d/maven_jdk.sh
         
       - name: Upload JBoss Fuse
-        copy: src=/home/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip
+        copy: src=demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip
               dest=/home/demo-user/IoT_Demo_Gateway/Fuse/Docker_Files/software/
               force=no
+        become: yes
+        become_method: sudo
 
       - name: Build the Smart Gateway deployables
         shell: "mvn clean install"
