@@ -1,31 +1,31 @@
 FROM    centos:centos7
 
-MAINTAINER psteiner <psteiner@redhat.com>
+MAINTAINER psteiner <psteiner@redhat.com>, ishuverma <iverma@redhat.com>
 
 # Update the system and Install necessary RPMs
-RUN yum -y install java-1.7.0-openjdk java-1.7.0-openjdk-devel unzip wget telnet
+RUN yum -y install java-1.7.0-openjdk-devel unzip wget telnet git
 
 # Make sure required environments are set
-ENV JAVA_HOME /usr/lib/jvm/java-openjdk/
-ENV HOME /home/psteiner
-ENV MAVEN_HOME /opt/maven
+ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk
+ENV HOME /home/demo-user
+ENV MAVEN_HOME /opt/apache-maven-3.3.9
 
 # Set root password
-RUN echo "root:redhat" | /usr/sbin/chpasswd
+RUN echo "root:change12_me" | /usr/sbin/chpasswd
 
 # download and install maven
-RUN wget http://ftp.fau.de/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.zip && \
-    unzip apache-maven-3.2.5-bin.zip && \
-    mv apache-maven-3.2.5/ /opt/maven && \
-    ln -s /opt/maven/bin/mvn /usr/bin/mvn && \
-    rm apache-maven-3.2.5-bin.zip
+RUN wget http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip && \
+    unzip apache-maven-3.3.9-bin.zip && \
+    mv apache-maven-3.3.9/ /opt/ && \
+    ln -s /opt/apache-maven-3.3.9/bin/mvn /usr/bin/mvn && \
+    rm apache-maven-3.3.9-bin.zip
 
 
 # Create user to run processed
-RUN useradd -m -d /home/psteiner -p psteiner psteiner
+RUN useradd -m -d /home/demo-user -p demo-user demo-user
 
 # Switch to new user
-USER psteiner
+USER demo-user
 
 # create a few needed directories
 RUN mkdir $HOME/tmp && \
@@ -35,10 +35,10 @@ RUN mkdir $HOME/tmp && \
 ADD config/settings.xml $HOME/.m2/
 
 # as ADD always uses root as user, we have to give
-# the file back to 'psteiner'
+# the file back to 'demo-user'
 USER root
-RUN chown -R psteiner $HOME/.m2/*
-USER psteiner
+RUN chown -R demo-user $HOME/.m2/*
+USER demo-user
 
 # lets create a volume to mount the external maven repo
 VOLUME /maven_repo
@@ -46,6 +46,6 @@ VOLUME /maven_repo
 # make $HOME/tmp the active directory
 WORKDIR $HOME/tmp
 
-# Build command -> docker build --rm -t psteiner/base .
-# run command -> docker run -d psteiner/base
-# run command ->  docker run -i -t -v /home/psteiner/.m2/repository/:/maven_repo  psteiner/base /bin/bash
+# Build command -> docker build --rm -t demo-user/base .
+# run command -> docker run -d demo-user/base
+# run command ->  docker run -i -t -v /home/demo-user/.m2/repository/:/maven_repo  demo-user/base /bin/bash
