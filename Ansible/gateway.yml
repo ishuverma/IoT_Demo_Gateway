@@ -62,9 +62,7 @@
 #        shell: source /etc/profile.d/maven_jdk.sh
         
       - name: Upload JBoss Fuse
-        copy: src=demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip
-              dest=/home/demo-user/IoT_Demo_Gateway/Fuse/Docker_Files/software/
-              force=no
+        shell: cp /home/demo-user/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip /home/demo-user/IoT_Demo_Gateway/Fuse/Docker_Files/software/
         become: yes
         become_method: sudo
 
